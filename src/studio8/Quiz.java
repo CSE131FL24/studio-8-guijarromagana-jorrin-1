@@ -27,6 +27,16 @@ public class Quiz {
 	
 	public void takeQuiz() {
 		//FIXME
+		int questionScore = 0;
+		int totalScore = 0;
+		
+		for (int i = 1; i <= questions.length; i++) {
+			questions[i-1].displayPrompt();
+			questionScore = questions[i-1].checkAnswer(getUserAnswer());
+			totalScore += questionScore;
+		}
+		
+		System.out.println(totalScore + "/" + this.getTotalPoints());
 	}
 	
 	public static void main(String[] args) {
@@ -36,7 +46,7 @@ public class Quiz {
 		Question multipleChoice = new MultipleChoiceQuestion("What studio is this?", "3", 1, choices);
 
 		choices = new String[] {"instance variables", "git", "methods", "eclipse"};
-		Question selectAll = new SelectAllQuestion("Select all of the following that can be found within a class:", "13", choices);
+		Question selectAll = new SelectAllQuestion("Select all of the following that can be found within a class:", "13", 1, choices);
 
 		Question[] questions = {q, multipleChoice, selectAll}; //create and add more questions!
 		
